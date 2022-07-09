@@ -40,6 +40,7 @@ int main()
 	pthread_t newthread;
 
 	// Holder for return value of pthread_create()
+	// This can point to any data type, like an int, a pointer, a struct, etc.
 	int *result;
 
 	pthread_create(&newthread, NULL, myturn, NULL);
