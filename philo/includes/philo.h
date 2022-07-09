@@ -6,7 +6,7 @@
 /*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 06:46:42 by itaureli          #+#    #+#             */
-/*   Updated: 2022/07/08 06:46:46 by itaureli         ###   ########.fr       */
+/*   Updated: 2022/07/09 08:54:51 by itaureli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,10 @@
 
 /* constants */
 #define MAX_PHILO 250
+#define THINKING 0
+#define EATING 1
+#define SLEEPING 2
+#define DIED 3
 
 /* structs */
 typedef struct s_philo
@@ -53,7 +57,7 @@ typedef struct s_table
 int init_program(t_table *t, int argc, char *argv[]);
 
 /* execution */
-int feast(t_table *t);
+int think(t_table *t, int id);
 
 /* utils */
 int ft_atoi(const char *str);

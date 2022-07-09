@@ -101,5 +101,5 @@ The following are allowed for this project:
 
 - [The Dining Philosophers problem](https://en.wikipedia.org/wiki/Dining_philosophers_problem)
 - [Gazpachow's Philosophers solution](https://github.com/Gaspachow/philosophers-42)
-- [Jacob Sorber - How to create and join threads in C (pthreads)](https://www.youtube.com/watch?v=uA8X5zNOGw8)
+- [Jacob Sorber - Threads Playlist](https://www.youtube.com/playlist?list=PL9IEJIKnBJjFZxuqyJ9JqVYmuFZHr7CFM)
 - [O Jantar](https://blog.pantuza.com/artigos/o-jantar-dos-filosofos-problema-de-sincronizacao-em-sistemas-operacionais)
