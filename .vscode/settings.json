@@ -1,0 +1,25 @@
+{
+	"editor.detectIndentation": false,
+	"editor.insertSpaces": false,
+	"editor.comments.insertSpace": false,
+	"editor.renderWhitespace": "all",
+	"editor.tabSize": 4,
+	"editor.rulers": [80],
+	"editor.wordWrap": "wordWrapColumn",
+	"files.trimTrailingWhitespace": true,
+	"editor.formatOnSave": false,
+	"files.insertFinalNewline": true,
+	"files.eol": "\n",
+	"workbench.colorCustomizations": {
+			"editorWhitespace.foreground": "#6273a47b"
+	},
+	"files.associations": {
+		"*.h": "c",
+		"libft.h": "c",
+		"minishell.h": "c",
+		"cerrno": "c",
+		"builtins.h": "c",
+		"cstdlib": "c"
+	},
+	"C_Cpp.errorSquiggles": "Disabled"
+}
