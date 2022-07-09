@@ -6,13 +6,13 @@
 /*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 06:45:29 by itaureli          #+#    #+#             */
-/*   Updated: 2022/07/09 17:35:59 by itaureli         ###   ########.fr       */
+/*   Updated: 2022/07/09 18:33:12 by itaureli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-static int init_table(t_table *table, int argc, char *argv[])
+static int	init_table(t_table *table, int argc, char *argv[])
 {
 	table->number_of_philos = ft_atoi(argv[1]);
 	table->time_to_die = ft_atoi(argv[2]);
@@ -31,7 +31,7 @@ static int init_table(t_table *table, int argc, char *argv[])
 	return (0);
 }
 
-static int init_philos(t_table *table)
+static int	init_philos(t_table *table)
 {
 	int i;
 
@@ -50,9 +50,9 @@ static int init_philos(t_table *table)
 	return (0);
 }
 
-static int init_mutex(t_table *table)
+static int	init_mutex(t_table *table)
 {
-	int i;
+	int	i;
 
 	if (!table)
 		return (1);

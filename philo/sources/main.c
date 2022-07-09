@@ -6,13 +6,13 @@
 /*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 06:46:30 by itaureli          #+#    #+#             */
-/*   Updated: 2022/07/09 17:18:30 by itaureli         ###   ########.fr       */
+/*   Updated: 2022/07/09 17:45:58 by itaureli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int not_only_digits(char *str)
+int	not_only_digits(char *str)
 {
 	while (*str)
 	{
@@ -23,7 +23,7 @@ int not_only_digits(char *str)
 	return (0);
 }
 
-int check_inputs(int argc, char *argv[])
+int	check_inputs(int argc, char *argv[])
 {
 	if (argc < 5 || argc > 6)
 	{
@@ -38,7 +38,6 @@ int check_inputs(int argc, char *argv[])
 	}
 	return (0);
 }
-
 /*
 Each philosopher should be a thread.
 
@@ -49,9 +48,9 @@ Each philosopher should have a unique fork to his left and to his right.
 If there's only one philosopher, there should be only one fork on the table
 */
 
-int main(int argc, char *argv[])
+int	main(int argc, char *argv[])
 {
-	t_table table;
+	t_table	table;
 
 	if (check_inputs(argc, argv))
 		return (1);

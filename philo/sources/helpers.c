@@ -6,16 +6,16 @@
 /*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 06:45:19 by itaureli          #+#    #+#             */
-/*   Updated: 2022/07/08 06:47:32 by itaureli         ###   ########.fr       */
+/*   Updated: 2022/07/09 17:44:12 by itaureli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int ft_atoi(const char *str)
+int	ft_atoi(const char *str)
 {
-	long int n;
-	int sign;
+	long int	n;
+	int			sign;
 
 	n = 0;
 	sign = 1;
@@ -35,10 +35,10 @@ int ft_atoi(const char *str)
 	return ((int)(n * sign));
 }
 
-long long gen_timestamp(void)
+long long	gen_timestamp(void)
 {
-	struct timeval tv;
-	struct timezone tz;
+	struct timeval	tv;
+	struct timezone	tz;
 
 	gettimeofday(&tv, &tz);
 	return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
