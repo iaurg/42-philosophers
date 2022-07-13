@@ -6,7 +6,7 @@
 /*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 06:46:30 by itaureli          #+#    #+#             */
-/*   Updated: 2022/07/09 17:45:58 by itaureli         ###   ########.fr       */
+/*   Updated: 2022/07/12 21:34:01 by itaureli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,8 @@ int	check_inputs(int argc, char *argv[])
 		return (1);
 	}
 	while (--argc > 0)
-	{
-		if (not_only_digits(argv[argc]))
-			return (printf("Parameters must be numeric!!\n"), 2);
-	}
+		if (ft_atoi(argv[argc]) < 0 || not_only_digits(argv[argc]))
+			return (printf("Parameters must be positive numbers!\n"), 2);
 	return (0);
 }
 /*

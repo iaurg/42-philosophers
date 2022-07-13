@@ -6,7 +6,7 @@
 /*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 06:45:29 by itaureli          #+#    #+#             */
-/*   Updated: 2022/07/09 18:33:12 by itaureli         ###   ########.fr       */
+/*   Updated: 2022/07/12 21:22:14 by itaureli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@ static int	init_table(t_table *table, int argc, char *argv[])
 	table->time_to_die = ft_atoi(argv[2]);
 	table->time_to_eat = ft_atoi(argv[3]);
 	table->time_to_sleep = ft_atoi(argv[4]);
+
 	table->philo_alive = 1;
+	//- The philosophers must never be starving.
 	table->philo_feeding = 1;
 	if (argc == 6)
 	{
@@ -69,8 +71,6 @@ int init_program(t_table *table, int argc, char *argv[])
 {
 	if (init_table(table, argc, argv))
 		return (1);
-	if (table->time_to_die < 0 || table->time_to_eat < 0 || table->time_to_sleep < 0)
-		return (printf("Parameters must be positive!!\n"), 2);
 	if (init_mutex(table))
 		return (printf("Error while initializing mutexes!!\n"), 3);
 	if (init_philos(table))
