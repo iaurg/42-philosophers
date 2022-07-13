@@ -6,7 +6,7 @@
 /*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 06:46:42 by itaureli          #+#    #+#             */
-/*   Updated: 2022/07/09 17:37:13 by itaureli         ###   ########.fr       */
+/*   Updated: 2022/07/12 22:25:34 by itaureli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@
 #define EATING 1
 #define SLEEPING 2
 #define DIED 3
+# define ERROR		1
+# define SUCCESS	0
 
 typedef pthread_mutex_t	t_mutex;
 
@@ -35,8 +37,9 @@ typedef struct s_philo
 {
 	int count_meals;
 	int id;
-	int id_left_fork;
-	int id_right_fork;
+	int left_fork;
+	int right_fork;
+	int is_alive;
 	long long ts_last_meal;
 	pthread_t id_thread;
 } t_philo;

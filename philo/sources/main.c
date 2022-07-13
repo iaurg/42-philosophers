@@ -6,7 +6,7 @@
 /*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 06:46:30 by itaureli          #+#    #+#             */
-/*   Updated: 2022/07/12 21:34:01 by itaureli         ###   ########.fr       */
+/*   Updated: 2022/07/12 22:29:26 by itaureli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ int	not_only_digits(char *str)
 	while (*str)
 	{
 		if (*str < '0' || *str > '9')
-			return (1);
+			return (ERROR);
 		str++;
 	}
-	return (0);
+	return (SUCCESS);
 }
 
 int	check_inputs(int argc, char *argv[])
@@ -29,12 +29,12 @@ int	check_inputs(int argc, char *argv[])
 	{
 		printf("Usage: ./philo [number of philosophers] [time to eat]");
 		printf(" [time to sleep] [time to die] [number of times to eat]\n");
-		return (1);
+		return (ERROR);
 	}
 	while (--argc > 0)
 		if (ft_atoi(argv[argc]) < 0 || not_only_digits(argv[argc]))
-			return (printf("Parameters must be positive numbers!\n"), 2);
-	return (0);
+			return (printf("Parameters must be positive numbers!\n"), ERROR);
+	return (SUCCESS);
 }
 /*
 Each philosopher should be a thread.
@@ -51,14 +51,15 @@ int	main(int argc, char *argv[])
 	t_table	table;
 
 	if (check_inputs(argc, argv))
-		return (1);
+		return (ERROR);
 	if (init_program(&table, argc, argv))
 		return (2);
+	//start_dinner(&table);
 	printf("THE PHILOSOPHERS DINNER\n");
 	printf("Number of philosophers: %d\n", table.number_of_philos);
 	printf("Time to eat: %d\n", table.time_to_eat);
-	printf("Time to sleep: %d\n", table.time_to_sleep);
 	printf("Time to die: %d\n", table.time_to_die);
+	printf("Time to sleep: %d\n", table.time_to_sleep);
 	printf("Number of meals: %d\n", table.times_must_eat);
 	return (0);
 }
