@@ -24,7 +24,6 @@ HEADER = $(addprefix $(INCLUDES_PATH)/,$(HEADER_FILE))
 
 SOURCE_FILES =	main.c \
 				init.c \
-				think.c \
 				helpers.c
 
 SOURCES = $(addprefix $(SOURCES_PATH)/,$(SOURCE_FILES))
