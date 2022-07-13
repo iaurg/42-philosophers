@@ -104,3 +104,4 @@ The following are allowed for this project:
 - [Jacob Sorber - Threads Playlist](https://www.youtube.com/playlist?list=PL9IEJIKnBJjFZxuqyJ9JqVYmuFZHr7CFM)
 - [O Jantar](https://blog.pantuza.com/artigos/o-jantar-dos-filosofos-problema-de-sincronizacao-em-sistemas-operacionais)
 - [JaeSeoKim's Philosophers solution](https://github.dev/JaeSeoKim/philosophers/tree/master/philo)
+- [Jean's Philosophers solution](https://github.com/Jean-xavierr/42Philosophers)
