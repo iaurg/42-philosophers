@@ -6,7 +6,7 @@
 /*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 06:46:30 by itaureli          #+#    #+#             */
-/*   Updated: 2022/07/12 22:29:26 by itaureli         ###   ########.fr       */
+/*   Updated: 2022/07/14 21:05:11 by itaureli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,6 @@ int	main(int argc, char *argv[])
 		return (ERROR);
 	if (init_program(&table, argc, argv))
 		return (2);
-	//start_dinner(&table);
-	printf("THE PHILOSOPHERS DINNER\n");
-	printf("Number of philosophers: %d\n", table.number_of_philos);
-	printf("Time to eat: %d\n", table.time_to_eat);
-	printf("Time to die: %d\n", table.time_to_die);
-	printf("Time to sleep: %d\n", table.time_to_sleep);
-	printf("Number of meals: %d\n", table.times_must_eat);
+	init_threads(&table);
 	return (0);
 }
