@@ -105,3 +105,5 @@ The following are allowed for this project:
 - [O Jantar](https://blog.pantuza.com/artigos/o-jantar-dos-filosofos-problema-de-sincronizacao-em-sistemas-operacionais)
 - [JaeSeoKim's Philosophers solution](https://github.dev/JaeSeoKim/philosophers/tree/master/philo)
 - [Jean's Philosophers solution](https://github.com/Jean-xavierr/42Philosophers)
+- [Multithreading Code - Computerphile](https://www.youtube.com/watch?v=7ENFeb-J75k&ab_channel=Computerphile)
+- [Passing arguments to pthread](http://www.cse.cuhk.edu.hk/~ericlo/teaching/os/lab/9-PThread/Pass.html)
