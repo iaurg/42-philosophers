@@ -6,48 +6,50 @@
 /*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 06:45:29 by itaureli          #+#    #+#             */
-/*   Updated: 2022/07/12 22:27:04 by itaureli         ###   ########.fr       */
+/*   Updated: 2022/07/16 16:58:50 by itaureli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-static int	init_table(t_table *table, int argc, char *argv[])
+void	init_table(t_table *table, int argc, char *argv[])
 {
 	table->number_of_philos = ft_atoi(argv[1]);
 	table->time_to_die = ft_atoi(argv[2]);
 	table->time_to_eat = ft_atoi(argv[3]);
 	table->time_to_sleep = ft_atoi(argv[4]);
-	//- The simulation stops when a philosopher dies.
-	table->philo_alive = 1;
-	//- The philosophers must never be starving.
-	table->philo_feeding = 1;
+	table->philo_alive = TRUE;
+	table->philo_feeding = TRUE;
+	table->forks = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * table->number_of_philos);
+	table->philos = (t_philo **)malloc(sizeof(t_philo *) * table->number_of_philos);
 	if (argc == 6)
-	{
 		table->times_must_eat = ft_atoi(argv[5]);
-		if (table->times_must_eat < 0)
-			return (printf("Number of meals must be positive!!\n"), 1);
-	}
 	else
 		table->times_must_eat = -1;
-	return (SUCCESS);
 }
 
 static int	init_philos(t_table *table)
 {
 	int i;
+	t_philo *philo;
 
 	i = table->number_of_philos;
 	if (!table)
 		return (ERROR);
 	while (--i >= 0)
 	{
-		table->philo[i].id = i;
-		table->philo[i].count_meals = 0;
-		table->philo[i].left_fork = i;
-		table->philo[i].right_fork = (i + 1) % table->number_of_philos;
-		table->philo[i].ts_last_meal = 0;
-		table->philo[i].id_thread = 0;
+		philo = (t_philo *)malloc(sizeof(t_philo));
+		if (!philo)
+			return (ERROR);
+		philo->id = i;
+		philo->count_meals = 0;
+		philo->fork_left = &table->forks[i];
+		philo->fork_right = &table->forks[(i + 1) % table->number_of_philos];
+		philo->ts_last_meal = 0;
+		philo->thread = 0;
+		philo->is_alive = TRUE;
+		philo->table = table;
+		table->philos[i] = philo;
 	}
 	return (SUCCESS);
 }
@@ -61,16 +63,15 @@ static int	init_mutex(t_table *table)
 	i = table->number_of_philos;
 	while (--i >= 0)
 	{
-		if (pthread_mutex_init(&table->fork[i], NULL))
-			return (2);
+		if (pthread_mutex_init(&table->forks[i], NULL))
+			return (ERROR);
 	}
 	return (SUCCESS);
 }
 
 int init_program(t_table *table, int argc, char *argv[])
 {
-	if (init_table(table, argc, argv))
-		return (SUCCESS);
+	init_table(table, argc, argv);
 	if (init_mutex(table))
 		return (printf("Error while initializing mutexes!!\n"), 3);
 	if (init_philos(table))
