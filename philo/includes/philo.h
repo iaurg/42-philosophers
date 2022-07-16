@@ -6,7 +6,7 @@
 /*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 06:46:42 by itaureli          #+#    #+#             */
-/*   Updated: 2022/07/12 22:25:34 by itaureli         ###   ########.fr       */
+/*   Updated: 2022/07/16 16:57:11 by itaureli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,21 +29,11 @@
 #define DIED 3
 # define ERROR		1
 # define SUCCESS	0
+typedef enum {FALSE = 0, TRUE} boolean;
 
 typedef pthread_mutex_t	t_mutex;
 
 /* structs */
-typedef struct s_philo
-{
-	int count_meals;
-	int id;
-	int left_fork;
-	int right_fork;
-	int is_alive;
-	long long ts_last_meal;
-	pthread_t id_thread;
-} t_philo;
-
 typedef struct s_table
 {
 	int times_must_eat;
@@ -54,12 +44,26 @@ typedef struct s_table
 	int time_to_eat;
 	int time_to_sleep;
 	long long ts_start;
-	t_mutex fork[MAX_PHILOS];
-	t_philo philo[MAX_PHILOS];
+	pthread_mutex_t *forks;
+	struct s_philo **philos;
 } t_table;
+
+typedef struct s_philo
+{
+	int id;
+	int count_meals;
+	int is_alive;
+	long long ts_last_meal;
+	pthread_mutex_t	*fork_left;
+	pthread_mutex_t	*fork_right;
+	pthread_t thread;
+	t_table *table;
+} t_philo;
+
 
 /* startup */
 int init_program(t_table *table, int argc, char *argv[]);
+int	init_threads(t_table *table);
 
 /* execution */
 int think(t_table *table, int id);

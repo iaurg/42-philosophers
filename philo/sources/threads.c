@@ -6,36 +6,42 @@
 /*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 22:03:24 by itaureli          #+#    #+#             */
-/*   Updated: 2022/07/12 22:06:01 by itaureli         ###   ########.fr       */
+/*   Updated: 2022/07/16 17:36:38 by itaureli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	start_dinner(t_table *table)
-{
-	int		i;
-	pthread_t	threads[table->n_philosophers];
-	int			*result;
-	int			ret;
+#include "philo.h"
 
-	i = -1;
-	while (++i < table->n_philosophers)
+void	*start_dinner(void *arg)
+{
+	t_philo *philo = (t_philo *)arg;
+
+	printf("Arg ID=%d \n", philo->id);
+	if (philo->id % 2)
+		usleep(1500);
+	return NULL;
+}
+
+int	init_threads(t_table *table)
+{
+	int i;
+
+	i = 0;
+	while(i < table->number_of_philos)
 	{
-		ret = pthread_create(&threads[i], NULL, philosopher, &table->philosophers[i]);
-		if (ret)
+		if(pthread_create(&table->philos[i]->thread, NULL, start_dinner, table->philos[i]))
 		{
-			printf("Error: pthread_create() failed\n");
-			return (1);
+			printf("Error creating thread\n");
+			return (ERROR);
 		}
+		// wait until the thread is done before exit
+		i++;
 	}
-	i = -1;
-	while (++i < table->n_philosophers)
+	i = 0;
+	while(i < table->number_of_philos)
 	{
-		ret = pthread_join(threads[i], (void *)&result);
-		if (ret)
-		{
-			printf("Error: pthread_join() failed\n");
-			return (1);
-		}
+		pthread_join(table->philos[i]->thread, NULL);
+		i++;
 	}
-	return (0);
+	return (SUCCESS);
 }
