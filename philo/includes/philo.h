@@ -6,7 +6,7 @@
 /*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 06:46:42 by itaureli          #+#    #+#             */
-/*   Updated: 2022/07/16 16:57:11 by itaureli         ###   ########.fr       */
+/*   Updated: 2022/07/17 16:04:06 by itaureli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,11 @@ typedef struct s_table
 	int number_of_philos;
 	int philo_alive;
 	int philo_feeding;
-	int time_to_die;
-	int time_to_eat;
-	int time_to_sleep;
-	long long ts_start;
+	long long time_to_die;
+	long long time_to_eat;
+	long long time_to_sleep;
+	struct timeval ts_start;
+	pthread_mutex_t	message;
 	pthread_mutex_t *forks;
 	struct s_philo **philos;
 } t_table;
@@ -62,13 +63,15 @@ typedef struct s_philo
 
 
 /* startup */
-int init_program(t_table *table, int argc, char *argv[]);
-int	init_threads(t_table *table);
+int		init_program(t_table *table, int argc, char *argv[]);
+int		init_threads(t_table *table);
 
 /* execution */
-int think(t_table *table, int id);
+int 	think(t_table *table, int id);
+void	print_message(t_philo *philo, char *msg);
 
 /* utils */
-int ft_atoi(const char *str);
+long	time_diff(struct timeval *start, struct timeval *end);
+int		ft_atoi(const char *str);
 
 #endif
