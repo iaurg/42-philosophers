@@ -6,7 +6,7 @@
 /*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 06:45:29 by itaureli          #+#    #+#             */
-/*   Updated: 2022/07/16 16:58:50 by itaureli         ###   ########.fr       */
+/*   Updated: 2022/07/17 15:56:06 by itaureli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	init_table(t_table *table, int argc, char *argv[])
 	table->philo_feeding = TRUE;
 	table->forks = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * table->number_of_philos);
 	table->philos = (t_philo **)malloc(sizeof(t_philo *) * table->number_of_philos);
+	gettimeofday(&table->ts_start, NULL);
 	if (argc == 6)
 		table->times_must_eat = ft_atoi(argv[5]);
 	else
@@ -66,6 +67,7 @@ static int	init_mutex(t_table *table)
 		if (pthread_mutex_init(&table->forks[i], NULL))
 			return (ERROR);
 	}
+	pthread_mutex_init(&table->message, NULL);
 	return (SUCCESS);
 }
 
