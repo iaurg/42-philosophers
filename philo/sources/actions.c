@@ -6,14 +6,31 @@
 /*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 21:18:46 by itaureli          #+#    #+#             */
-/*   Updated: 2022/07/12 21:18:46 by itaureli         ###   ########.fr       */
+/*   Updated: 2022/07/17 16:04:01 by itaureli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "philo.h"
 
-int check_is_dead(t_table *table)
+long	time_diff(struct timeval *start, struct timeval *end)
 {
-	if (table->philo_alive == 0)
-		return (1);
-	return (0);
+	long double	sec;
+	long double	usec;
+
+	sec = end->tv_sec - start->tv_sec;
+	usec = end->tv_usec - start->tv_usec;
+	return (sec * 1000 + usec / 1000);
+}
+
+void	print_message(t_philo *philo, char *msg)
+{
+	t_table			*table;
+	struct timeval	now;
+
+	table = philo->table;
+	pthread_mutex_lock(&table->message);
+	gettimeofday(&now, NULL);
+	printf("\033[0;32m");
+	printf("[%5ld]\033[0m %d %s\n", time_diff(&table->ts_start, &now), philo->id + 1, msg);
+	pthread_mutex_unlock(&table->message);
 }
