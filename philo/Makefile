@@ -26,6 +26,7 @@ SOURCE_FILES =	main.c \
 				init.c \
 				threads.c \
 				actions.c \
+				times.c \
 				helpers.c
 
 SOURCES = $(addprefix $(SOURCES_PATH)/,$(SOURCE_FILES))
