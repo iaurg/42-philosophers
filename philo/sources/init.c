@@ -6,7 +6,7 @@
 /*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 06:45:29 by itaureli          #+#    #+#             */
-/*   Updated: 2022/07/17 15:56:06 by itaureli         ###   ########.fr       */
+/*   Updated: 2022/07/17 21:04:25 by itaureli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	init_table(t_table *table, int argc, char *argv[])
 	table->philo_feeding = TRUE;
 	table->forks = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * table->number_of_philos);
 	table->philos = (t_philo **)malloc(sizeof(t_philo *) * table->number_of_philos);
-	gettimeofday(&table->ts_start, NULL);
+	table->ts_start = gen_timestamp();
 	if (argc == 6)
 		table->times_must_eat = ft_atoi(argv[5]);
 	else

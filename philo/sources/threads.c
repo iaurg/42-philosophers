@@ -6,11 +6,29 @@
 /*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 22:03:24 by itaureli          #+#    #+#             */
-/*   Updated: 2022/07/17 16:56:03 by itaureli         ###   ########.fr       */
+/*   Updated: 2022/07/17 21:11:32 by itaureli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+static int	died(t_philo *philo)
+{
+	t_table			*table;
+	struct timeval	now;
+
+	table = philo->table;
+	printf("time ls_meal %lld \n", philo->ts_last_meal);
+	printf("time to die %d \n", table->time_to_die);
+
+	gettimeofday(&now, NULL);
+	printf("\033[0;31m");
+	printf("[%5lld]\033[0m %d died\n", gen_timestamp(), philo->id + 1);
+	table->philo_alive = FALSE;
+	philo->is_alive = FALSE;
+	return (TRUE);
+
+}
 
 static void philo_eat(t_philo *philo)
 {
@@ -22,7 +40,7 @@ static void philo_eat(t_philo *philo)
 	gettimeofday(&start, NULL);
 	pthread_mutex_lock(philo->fork_left);
 	pthread_mutex_lock(philo->fork_right);
-	philo->ts_last_meal = time_diff(&start, &end);
+	philo->ts_last_meal = gen_timestamp();
 	print_message(philo, "has taken a fork");
 	print_message(philo, "has taken a fork");
 	print_message(philo, "is eating");
@@ -66,12 +84,15 @@ void	*start_dinner(void *arg)
 
 	table = philo->table;
 
-	// if 1 philo just die
-	if(table->number_of_philos == 1)
+	if (table->number_of_philos == 1)
 		kill_the_one(philo);
-	while(table->philo_alive)
+	if (philo->id % 2)
+		usleep(1500);
+	while (table->philo_alive != 0 && philo->is_alive != 0)
 	{
 		philo_eat(philo);
+		if (died(philo))
+			return NULL;
 		philo_sleep(philo);
 		philo_think(philo);
 	}
