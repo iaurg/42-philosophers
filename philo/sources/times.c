@@ -6,18 +6,19 @@
 /*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/17 20:47:42 by itaureli          #+#    #+#             */
-/*   Updated: 2022/07/17 21:06:12 by itaureli         ###   ########.fr       */
+/*   Updated: 2022/07/19 22:57:21 by itaureli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-long long	gen_timestamp(void)
+long int	actual_time(void)
 {
-	struct timeval	tv;
-	struct timezone	tz;
+	long int			time;
+	struct timeval		current_time;
 
-	gettimeofday(&tv, &tz);
-	return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
+	time = 0;
+	gettimeofday(&current_time, NULL);
+	time = (current_time.tv_sec * 1000) + (current_time.tv_usec / 1000);
+	return (time);
 }
-

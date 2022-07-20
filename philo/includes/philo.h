@@ -6,7 +6,7 @@
 /*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 06:46:42 by itaureli          #+#    #+#             */
-/*   Updated: 2022/07/17 21:08:23 by itaureli         ###   ########.fr       */
+/*   Updated: 2022/07/19 22:50:56 by itaureli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ typedef struct s_table
 	int time_to_die;
 	int time_to_eat;
 	int time_to_sleep;
-	long long ts_start;
+	long int ts_start;
 	pthread_mutex_t	message;
 	pthread_mutex_t *forks;
 	struct s_philo **philos;
@@ -54,7 +54,7 @@ typedef struct s_philo
 	int id;
 	int count_meals;
 	int is_alive;
-	long long ts_last_meal;
+	long int ts_last_meal;
 	pthread_mutex_t	*fork_left;
 	pthread_mutex_t	*fork_right;
 	pthread_t thread;
@@ -73,5 +73,6 @@ void	print_message(t_philo *philo, char *msg);
 /* utils */
 int		ft_atoi(const char *str);
 long long	gen_timestamp(void);
+long int	actual_time(void);
 
 #endif
