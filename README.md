@@ -1,12 +1,3 @@
-<div align="center">
-  <img src=".github/assets/philosophers.png" width="200px" />
-</div>
-<div align="center">
-  <img src="https://img.shields.io/github/languages/count/vcwild/philosophers?color=%23E96418&style=flat-square" alt="languages" />
-  <img src="https://img.shields.io/github/license/vcwild/philosophers?color=%23E96418&style=flat-square" alt="license" />
-  <img src="https://img.shields.io/github/repo-size/vcwild/philosophers?color=%23E96418&style=flat-square" alt="repo size" />
-</div>
-
 # Philosophers
 
 This project is a solution to **The Dining Philosophers Problem** using mutex and semaphore programming techniques.
