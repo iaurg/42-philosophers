@@ -6,7 +6,7 @@
 /*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 06:46:42 by itaureli          #+#    #+#             */
-/*   Updated: 2022/07/19 22:57:24 by itaureli         ###   ########.fr       */
+/*   Updated: 2022/07/20 22:51:51 by itaureli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,5 @@ void	print_message(t_philo *philo, char *msg);
 /* utils */
 int		ft_atoi(const char *str);
 long int	actual_time(void);
-
+void		ft_usleep(int ms);
 #endif
