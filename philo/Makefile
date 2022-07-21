@@ -3,7 +3,7 @@ NAME = philo
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 
-EXTERNAL_LIBS = -lpthread
+EXTERNAL_LIBS = -pthread
 
 VALGRIND = valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -q --tool=memcheck
 
