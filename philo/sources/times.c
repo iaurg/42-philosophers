@@ -6,7 +6,7 @@
 /*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/17 20:47:42 by itaureli          #+#    #+#             */
-/*   Updated: 2022/07/20 22:54:45 by itaureli         ###   ########.fr       */
+/*   Updated: 2022/07/20 23:05:07 by itaureli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,11 @@
 
 long int	actual_time(void)
 {
-	long int			time;
-	struct timeval		current_time;
+	struct timeval	tv;
+	struct timezone	tz;
 
-	time = 0;
-	gettimeofday(&current_time, NULL);
-	time = (current_time.tv_sec * 1000) + (current_time.tv_usec / 1000);
-	return (time);
+	gettimeofday(&tv, &tz);
+	return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
 }
 
 void	ft_usleep(int ms)
