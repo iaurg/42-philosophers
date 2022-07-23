@@ -6,7 +6,7 @@
 /*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/17 20:47:42 by itaureli          #+#    #+#             */
-/*   Updated: 2022/07/23 16:56:16 by itaureli         ###   ########.fr       */
+/*   Updated: 2022/07/23 17:18:22 by itaureli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,6 @@ void	died(t_philo *philo)
 	philo->is_alive = FALSE;
 	print_message(philo, "died");
 	return ;
-}
-
-long	timenow(long firststamp)
-{
-	return (actual_time() - firststamp);
 }
 
 void	ft_usleep(int ms, t_philo *philo)

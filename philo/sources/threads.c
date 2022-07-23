@@ -6,20 +6,42 @@
 /*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 22:03:24 by itaureli          #+#    #+#             */
-/*   Updated: 2022/07/23 16:50:28 by itaureli         ###   ########.fr       */
+/*   Updated: 2022/07/23 17:18:54 by itaureli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+/*
+Fake try lock to check if fork can be used
+*/
+static	void try_lock_mutex(t_philo *philo)
+{
+	t_table			*table;
+
+	table = philo->table;
+
+	while (*(long *)philo->fork_left == 1 || *(long *)philo->fork_right == 1)
+	{
+		usleep(10);
+		if ((actual_time() - philo->ts_last_meal) > table->time_to_die)
+		{
+			died(philo);
+			exit(2);
+		}
+	}
+}
 
 static void philo_eat(t_philo *philo)
 {
 	t_table			*table;
 
 	table = philo->table;
+
+	try_lock_mutex(philo);
 	pthread_mutex_lock(philo->fork_left);
-	pthread_mutex_lock(philo->fork_right);
 	print_message(philo, "has taken a fork");
+	pthread_mutex_lock(philo->fork_right);
 	print_message(philo, "has taken a fork");
 	print_message(philo, "is eating");
 	philo->ts_last_meal = actual_time();
@@ -32,6 +54,7 @@ static void philo_eat(t_philo *philo)
 static void philo_think(t_philo *philo)
 {
 	print_message(philo, "is thinking");
+	usleep(500);
 }
 
 static void philo_sleep(t_philo *philo)
@@ -65,8 +88,8 @@ void	*start_dinner(void *arg)
 
 	if (table->number_of_philos == 1)
 		kill_the_one(philo);
-	if (philo->id % 2)
-		usleep(1200 * 1000);
+	if (philo->id % 2 == 0)
+		usleep(1200);
 	philo->ts_last_meal = actual_time();
 	while (table->times_must_eat != philo->count_meals && (table->philo_alive != 0 && philo->is_alive != 0))
 	{
