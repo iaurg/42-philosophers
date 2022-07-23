@@ -6,40 +6,27 @@
 /*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 22:03:24 by itaureli          #+#    #+#             */
-/*   Updated: 2022/07/20 23:02:32 by itaureli         ###   ########.fr       */
+/*   Updated: 2022/07/23 16:50:28 by itaureli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-static void	died(t_philo *philo)
-{
-	t_table			*table;
-
-	table = philo->table;
-	table->philo_alive = FALSE;
-	philo->is_alive = FALSE;
-	print_message(philo, "died");
-	return ;
-}
 
 static void philo_eat(t_philo *philo)
 {
 	t_table			*table;
 
 	table = philo->table;
-
 	pthread_mutex_lock(philo->fork_left);
 	pthread_mutex_lock(philo->fork_right);
-	philo->ts_last_meal = actual_time();
 	print_message(philo, "has taken a fork");
 	print_message(philo, "has taken a fork");
 	print_message(philo, "is eating");
-	philo->count_meals++;
-	ft_usleep(table->time_to_eat);
+	philo->ts_last_meal = actual_time();
+	ft_usleep(table->time_to_eat, philo);
 	pthread_mutex_unlock(philo->fork_left);
 	pthread_mutex_unlock(philo->fork_right);
-
+	philo->count_meals++;
 }
 
 static void philo_think(t_philo *philo)
@@ -53,7 +40,7 @@ static void philo_sleep(t_philo *philo)
 
 	table = philo->table;
 	print_message(philo, "is sleeping");
-	ft_usleep(table->time_to_sleep);
+	ft_usleep(table->time_to_sleep, philo);
 }
 
 void kill_the_one(t_philo *philo)
@@ -64,6 +51,7 @@ void kill_the_one(t_philo *philo)
 
 	pthread_mutex_lock(philo->fork_left);
 	print_message(philo, "has taken a fork");
+	usleep(table->time_to_die * 1000);
 	print_message(philo, "died");
 	table->philo_alive = FALSE;
 }
@@ -78,16 +66,11 @@ void	*start_dinner(void *arg)
 	if (table->number_of_philos == 1)
 		kill_the_one(philo);
 	if (philo->id % 2)
-		ft_usleep(table->time_to_eat / 10);
+		usleep(1200 * 1000);
+	philo->ts_last_meal = actual_time();
 	while (table->times_must_eat != philo->count_meals && (table->philo_alive != 0 && philo->is_alive != 0))
 	{
 		philo_eat(philo);
-		if ((actual_time() - philo->ts_last_meal) > table->time_to_die)
-		{
-			died(philo);
-			ft_usleep(table->time_to_die);
-			return (NULL);
-		}
 		philo_sleep(philo);
 		philo_think(philo);
 	}

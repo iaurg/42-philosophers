@@ -6,7 +6,7 @@
 /*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 06:45:29 by itaureli          #+#    #+#             */
-/*   Updated: 2022/07/19 21:53:29 by itaureli         ###   ########.fr       */
+/*   Updated: 2022/07/23 16:50:24 by itaureli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ static int	init_philos(t_table *table)
 		philo->count_meals = 0;
 		philo->fork_left = &table->forks[i];
 		philo->fork_right = &table->forks[(i + 1) % table->number_of_philos];
-		philo->ts_last_meal = 0;
 		philo->thread = 0;
 		philo->is_alive = TRUE;
 		philo->table = table;
@@ -75,8 +74,8 @@ int init_program(t_table *table, int argc, char *argv[])
 {
 	init_table(table, argc, argv);
 	if (init_mutex(table))
-		return (printf("Error while initializing mutexes!!\n"), 3);
+		return (printf("Error initializing mutexes\n"), 3);
 	if (init_philos(table))
-		return (printf("Error while initializing philosophers!!\n"), 4);
+		return (printf("Error initializing philosophers\n"), 4);
 	return (SUCCESS);
 }
