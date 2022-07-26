@@ -6,7 +6,7 @@
 /*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 06:45:19 by itaureli          #+#    #+#             */
-/*   Updated: 2022/07/17 21:05:43 by itaureli         ###   ########.fr       */
+/*   Updated: 2022/07/25 23:28:37 by itaureli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,20 @@ int	ft_atoi(const char *str)
 			return (-1);
 	}
 	return ((int)(n * sign));
+}
+
+void	clean_up(t_table *table)
+{
+	int		i;
+
+	i = -1;
+	while (++i < table->number_of_philos)
+	{
+		pthread_mutex_destroy(&table->forks[i]);
+		free(table->philos[i]);
+	}
+	pthread_mutex_destroy(&table->message);
+	free(table->philos);
+	free(table->forks);
+	return ;
 }

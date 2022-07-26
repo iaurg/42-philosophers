@@ -6,7 +6,7 @@
 /*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 22:03:24 by itaureli          #+#    #+#             */
-/*   Updated: 2022/07/25 22:38:56 by itaureli         ###   ########.fr       */
+/*   Updated: 2022/07/25 23:29:50 by itaureli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,7 @@ static	void try_lock_mutex(t_philo *philo)
 	{
 		usleep(10);
 		if (is_dead(philo))
-		{
-			exit(2);
 			return ;
-		}
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/17 20:47:42 by itaureli          #+#    #+#             */
-/*   Updated: 2022/07/25 22:44:44 by itaureli         ###   ########.fr       */
+/*   Updated: 2022/07/25 23:26:28 by itaureli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,6 @@ void	ft_usleep(int ms, t_philo *philo)
 	{
 		usleep(10);
 		if (is_dead(philo))
-		{
-			exit(2);
-		}
+			return ;
 	}
 }

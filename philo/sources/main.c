@@ -6,7 +6,7 @@
 /*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 06:46:30 by itaureli          #+#    #+#             */
-/*   Updated: 2022/07/23 15:35:44 by itaureli         ###   ########.fr       */
+/*   Updated: 2022/07/25 23:02:07 by itaureli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,6 @@ int	main(int argc, char *argv[])
 	if (init_program(&table, argc, argv))
 		return (2);
 	init_threads(&table);
+	clean_up(&table);
 	return (0);
 }
