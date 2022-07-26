@@ -6,7 +6,7 @@
 /*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 06:46:42 by itaureli          #+#    #+#             */
-/*   Updated: 2022/07/23 16:50:21 by itaureli         ###   ########.fr       */
+/*   Updated: 2022/07/25 22:38:34 by itaureli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ typedef struct s_table
 {
 	int times_must_eat;
 	int number_of_philos;
-	_Atomic int philo_alive;
+	int philo_alive;
 	int philo_feeding;
 	int time_to_die;
 	int time_to_eat;
@@ -53,7 +53,6 @@ typedef struct s_philo
 {
 	int id;
 	int count_meals;
-	_Atomic int is_alive;
 	long int ts_last_meal;
 	pthread_mutex_t	*fork_left;
 	pthread_mutex_t	*fork_right;
@@ -71,8 +70,8 @@ int 	think(t_table *table, int id);
 void	print_message(t_philo *philo, char *msg);
 
 /* utils */
-int		ft_atoi(const char *str);
+int			ft_atoi(const char *str);
 long int	actual_time(void);
-void	ft_usleep(int ms, t_philo *philo);
-void	died(t_philo *philo);
+void		ft_usleep(int ms, t_philo *philo);
+int			is_dead(t_philo *philo);
 #endif

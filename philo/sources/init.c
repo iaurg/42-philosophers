@@ -6,7 +6,7 @@
 /*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 06:45:29 by itaureli          #+#    #+#             */
-/*   Updated: 2022/07/23 16:50:24 by itaureli         ###   ########.fr       */
+/*   Updated: 2022/07/25 22:38:39 by itaureli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ static int	init_philos(t_table *table)
 		philo->fork_left = &table->forks[i];
 		philo->fork_right = &table->forks[(i + 1) % table->number_of_philos];
 		philo->thread = 0;
-		philo->is_alive = TRUE;
 		philo->table = table;
 		table->philos[i] = philo;
 	}
