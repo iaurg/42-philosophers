@@ -6,7 +6,7 @@
 /*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 06:46:42 by itaureli          #+#    #+#             */
-/*   Updated: 2022/07/25 22:38:34 by itaureli         ###   ########.fr       */
+/*   Updated: 2022/07/25 23:02:51 by itaureli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@
 #include <pthread.h>
 
 /* constants */
-#define MAX_PHILOS 210
-#define THINKING 0
-#define EATING 1
-#define SLEEPING 2
-#define DIED 3
+# define MAX_PHILOS 210
+# define THINKING 0
+# define EATING 1
+# define SLEEPING 2
+# define DIED 3
 # define ERROR		1
 # define SUCCESS	0
 typedef enum {FALSE = 0, TRUE} boolean;
@@ -74,4 +74,5 @@ int			ft_atoi(const char *str);
 long int	actual_time(void);
 void		ft_usleep(int ms, t_philo *philo);
 int			is_dead(t_philo *philo);
+void		clean_up(t_table *table);
 #endif
