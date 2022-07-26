@@ -5,8 +5,6 @@ CFLAGS = -Wall -Wextra -Werror
 
 EXTERNAL_LIBS = -pthread
 
-VALGRIND = valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -q --tool=memcheck
-
 SAFE_MKDIR = mkdir -p
 
 COPY = cp -p
@@ -42,9 +40,6 @@ $(OBJECTS_PATH)/%.o: $(SOURCES_PATH)/%.c $(HEADER)
 	@$(SAFE_MKDIR) $(OBJECTS_PATH)
 	@$(CC) $(CFLAGS) -g -I $(INCLUDES_PATH) -o $@ -c $< $(EXTERNAL_LIBS)
 
-valgrind: $(NAME)
-	$(VALGRIND) ./$(NAME) $(INPUT)
-
 re:	fclean all
 
 archives_clean:
@@ -56,4 +51,4 @@ clean:
 fclean: clean archives_clean
 	$(REMOVE) $(NAME)
 
-.PHONY: all run valgrind re fclean clean archives_clean libft_clean
+.PHONY: all run re fclean clean archives_clean
