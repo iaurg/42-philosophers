@@ -6,13 +6,13 @@
 /*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 06:45:29 by itaureli          #+#    #+#             */
-/*   Updated: 2022/07/25 22:38:39 by itaureli         ###   ########.fr       */
+/*   Updated: 2022/07/26 06:56:44 by itaureli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	init_table(t_table *table, int argc, char *argv[])
+static void	init_table(t_table *table, int argc, char *argv[])
 {
 	table->number_of_philos = ft_atoi(argv[1]);
 	table->time_to_die = ft_atoi(argv[2]);
@@ -20,8 +20,10 @@ void	init_table(t_table *table, int argc, char *argv[])
 	table->time_to_sleep = ft_atoi(argv[4]);
 	table->philo_alive = TRUE;
 	table->philo_feeding = TRUE;
-	table->forks = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * table->number_of_philos);
-	table->philos = (t_philo **)malloc(sizeof(t_philo *) * table->number_of_philos);
+	table->forks = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t)
+			* table->number_of_philos);
+	table->philos = (t_philo **)malloc(sizeof(t_philo *)
+			* table->number_of_philos);
 	table->ts_start = actual_time();
 	if (argc == 6)
 		table->times_must_eat = ft_atoi(argv[5]);
@@ -31,8 +33,8 @@ void	init_table(t_table *table, int argc, char *argv[])
 
 static int	init_philos(t_table *table)
 {
-	int i;
-	t_philo *philo;
+	int		i;
+	t_philo	*philo;
 
 	i = table->number_of_philos;
 	if (!table)
@@ -69,7 +71,7 @@ static int	init_mutex(t_table *table)
 	return (SUCCESS);
 }
 
-int init_program(t_table *table, int argc, char *argv[])
+int	init_program(t_table *table, int argc, char *argv[])
 {
 	init_table(table, argc, argv);
 	if (init_mutex(table))

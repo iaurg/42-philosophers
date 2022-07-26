@@ -6,7 +6,7 @@
 /*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 06:45:19 by itaureli          #+#    #+#             */
-/*   Updated: 2022/07/25 23:28:37 by itaureli         ###   ########.fr       */
+/*   Updated: 2022/07/26 06:45:35 by itaureli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	ft_atoi(const char *str)
 
 void	clean_up(t_table *table)
 {
-	int		i;
+	int	i;
 
 	i = -1;
 	while (++i < table->number_of_philos)
@@ -49,4 +49,17 @@ void	clean_up(t_table *table)
 	free(table->philos);
 	free(table->forks);
 	return ;
+}
+
+/*
+Fake try lock to check if fork can be used
+*/
+void	try_lock_mutex(t_philo *philo)
+{
+	while (*(long *)philo->fork_left == 1 || *(long *)philo->fork_right == 1)
+	{
+		usleep(10);
+		if (is_dead(philo))
+			return ;
+	}
 }
